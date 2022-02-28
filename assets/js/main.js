@@ -3,7 +3,8 @@
 const loadCountryData = () => {
     fetch('https://restcountries.com/v3.1/all')
     .then(res => res.json())
-    .then(allCountry => countryData(allCountry))
+    .then(allCountry => countryData(allCountry));
+    
 }
 loadCountryData();
 
@@ -12,7 +13,8 @@ const countryData = allCountryData => {
     const countryDetailCard = document.getElementById('country-detail-container');
     allCountryData.forEach(countryDetails => {
         // console.log(countryDetails);
- 
+        // const spinner =document.getElementById('spinner');
+        // spinner.style.display = 'none';
         const createDetailCard = document.createElement('div');
         createDetailCard.classList.add('col-md-3');
         createDetailCard.innerHTML = `
@@ -43,24 +45,43 @@ const singleCountryDetail = singleDetail => {
 }
 
 const singleCountryDetails = data =>{
-    console.log(data[0].name.official);
-    const spinner =document.getElementById('spinner');
-    spinner.style.display = 'none';
-    const cardTitle = document.getElementById('modal-title');
-    const cardBody = document.getElementById('modal-body');
+    console.log(data[0].name);
+    console.log(data[0].flags.png);
+    
+    
+    const cardBody = document.getElementById('modal-content');
     const countryDetailP = document.getElementsByClassName('modal-text');
+    // const spinner =document.getElementById('spinner');
+    // spinner.style.display = 'none';
     // countryDetailP.forEach(countryDetailText => {
     //     countryDetailText.innerText = '';
     // });
-    for( const countryDetailText of countryDetailP ){
-        countryDetailText.innerText = '';
-    }
-    cardTitle.innerText = data[0].name.common;
-    const p = document.createElement('p');
-    p.classList.add('modal-text')
-    p.innerText = `
-    Capital: ${data[0].capital}
-    Native Name: ${data[0].name.official}
+    // for( const countryDetailText of countryDetailP ){
+    //     countryDetailText.innerText = '';
+    // }
+    cardBody.innerHTML = '';
+    const p = document.createElement('div');
+    p.classList.add('country-detail-content');
+    p.innerHTML = `
+
+    <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">${data[0].name.common}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div  class="modal-body">
+                    Capital: ${data[0].capital} <br>
+                    Native Name: ${data[0].name.official} <br>
+                              
+                    <img class='w-100 mt-2' src=' ${data[0].flags.png}'>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+
+                
+    
     `;
+    
     cardBody.appendChild(p);
+    
 }
