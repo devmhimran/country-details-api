@@ -12,9 +12,6 @@ const countryData = allCountryData => {
     
     const countryDetailCard = document.getElementById('country-detail-container');
     allCountryData.forEach(countryDetails => {
-        // console.log(countryDetails);
-        // const spinner =document.getElementById('spinner');
-        // spinner.style.display = 'none';
         const createDetailCard = document.createElement('div');
         createDetailCard.classList.add('col-md-3');
         createDetailCard.innerHTML = `
@@ -51,14 +48,7 @@ const singleCountryDetails = data =>{
     
     const cardBody = document.getElementById('modal-content');
     const countryDetailP = document.getElementsByClassName('modal-text');
-    // const spinner =document.getElementById('spinner');
-    // spinner.style.display = 'none';
-    // countryDetailP.forEach(countryDetailText => {
-    //     countryDetailText.innerText = '';
-    // });
-    // for( const countryDetailText of countryDetailP ){
-    //     countryDetailText.innerText = '';
-    // }
+
     cardBody.innerHTML = '';
     const p = document.createElement('div');
     p.classList.add('country-detail-content');
